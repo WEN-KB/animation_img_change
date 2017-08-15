@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #content{
+            width: 300px;
+            height: 600px;
+            background-color: black;
+        }
+        #img{
+            width:350px;
+            height: 300px;
+
+        }
+    </style>
+</head>
+<body>
+        <div id="content">
+        <img id="img" src="images/bg.png">
+        </div>
+
+
+</body>
+<script>
+    function getId(id){
+    return document.getElementById(id)?document.getElementById(id):null;
+    }
+//    function getStyle(obj,attr){
+//    if(document.all){
+//    return parseInt(obj.currentStyle[attr]);
+//    }else{
+//    return parseInt(getComputedStyle(obj,false)[attr]);
+//    }
+//    }
+
+    var box=getId("content");
+    var img=getId("img");
+//    console.log(box,img_);
+    var box_width=parseInt(getComputedStyle(content).width);
+    var box_height=parseInt(getComputedStyle(content).height);
+//    console.log(box_width,box_height);
+    var img_width=parseInt(getComputedStyle(img).width);
+    var img_height=parseInt(getComputedStyle(img).height);
+//        console.log(img_width,img_height);
+    var width_ratio=img_height/img_width;
+    var height_ratio=img_width/img_height;
+    var del_width =parseInt(box_width - img_width);
+    var del_height = parseInt(box_height - img_height);
+//    console.log(del_height, del_width);
+
+    img.addEventListener("click",function () {
+        change();
+    },true);
+    function change() {
+        if(del_width<del_height){
+        img_width=box_width;
+        img_height=box_width*width_ratio;
+        }
+        else {
+            img_height=box_height;
+            img_width=img_height*height_ratio;
+        }
+//        img_height=img_width*width_ratio;
+        console.log(img_width);
+        img.style.width=img_width+"px";
+        img.style.height=img_height+"px";
+        img.style.marginTop=(box_height-img_height)/2+"px";
+//        img.setAttribute("height",img_height+"px");
+    }
+</script>
+</html>
